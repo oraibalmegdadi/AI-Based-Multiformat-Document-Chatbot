@@ -1,6 +1,0 @@
-1- To run explore to the folder location: 
-cd C:\Users\Oraib\mistralLanChain
-
-
-2- Run: 
-streamlit run chatwithpdf-JSONEmbeddings.py
