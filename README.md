@@ -21,7 +21,7 @@ This model utilizes the Ollama software tool to run large language models (LLMs)
 1. Install Ollama from [https://ollama.com/download](https://ollama.com/download)
 Using Python Terminal: 
 2. Clone the repository: git clone https://github.com/oraibalmegdadi/LocalRAG.git
-3. Download requiremnts: pip install requirements.txt 
+3. Download requiremnts: pip install -r requirements.txt
 4. Run the application: 
 	- ollama pull mistral
 	- streamlit run OfflineRAGapp.py
