@@ -45,14 +45,14 @@ The image illustrates the overall steps of the model. It begins with uploading m
 
 3. Call the `get_vectorstore(text_chunks)` function to generate embeddings for the text chunks and store them in a vector database.
    - **Main method**:
-     - **Embeddings**: [HuggingFace Instructor-XL](https://huggingface.co/hkunlp/instructor-xl)
-     - **FAISS**: A library for efficient similarity search. [More info](https://engineering.fb.com/2017/03/29/data-infrastructure/faiss-a-library-for-efficient-similarity-search/)
+     - **Embeddings**: our model use Mirtal llm, other supported models could be found at https://ollama.com/library
+     - **FAISS**: A library for efficient similarity search  A library that allows developers to quickly search for embeddings of multimedia documents that are similar to each other.. [More info](https://engineering.fb.com/2017/03/29/data-infrastructure/faiss-a-library-for-efficient-similarity-search/)
    - **Convert the embeddings vectorspace to txt file (embeddings.txt)**
 
 4. Call the `get_conversation_chain(vectorstore)` function to create a conversational chain with the generated vectorstore.
    - **This operation relies on the langchain library for creating conversational chains.**
 
-## Useful tutorials: 
+## Useful Tutorials: 
 1.Playlist by @alejandro_ao:  https://www.youtube.com/watch?v=LBNpyjcbv0o&list=PLMVV8yyL2GN_n41v1ESBvDHwMbYYhlAh1
-2. 
+2.Playlist by @datasciencebasics: https://www.youtube.com/watch?v=0iBV-eM418Y&list=PLz-qytj7eIWX-bpcRtvkixvo9fuejVr8y
 
