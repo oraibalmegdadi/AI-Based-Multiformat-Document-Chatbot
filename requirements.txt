@@ -7,6 +7,7 @@ altair==4
 tiktoken==0.4.0
 InstructorEmbedding==1.0.1
 sentence-transformers==2.2.2
-langchain_community
-torch
+langchain_community==0.2.0
+torch==2.0.1
+
 
