@@ -1,6 +1,5 @@
 import streamlit as st
 from langchain_community.document_loaders import WebBaseLoader
-#from langchain_community.vectorstores import Chroma
 from langchain_community import embeddings
 from langchain_community.llms import Ollama
 from langchain_community.embeddings import OllamaEmbeddings
@@ -18,16 +17,21 @@ from langchain.chains import ConversationalRetrievalChain
 from htmlTemplates import css, bot_template, user_template
 import json 
 import requests
+import gzip
 
 
-
-
-def get_pdf_text(pdf_docs):
+def get_document_text(docs):
     text = ""
-    for pdf in pdf_docs:
-        pdf_reader = PdfReader(pdf)
-        for page in pdf_reader.pages:
-            text += page.extract_text()
+    for doc in docs:
+        if doc.type == "application/pdf":
+            pdf_reader = PdfReader(doc)
+            for page in pdf_reader.pages:
+                text += page.extract_text()
+        elif doc.type == "text/plain":
+            text += doc.read().decode("utf-8")
+        elif doc.type == "application/gzip" or doc.name.endswith(".txt.gz"):
+            with gzip.open(doc, 'rt', encoding='utf-8') as f:
+                text += f.read()
     return text
 
 
@@ -100,7 +104,7 @@ def handle_userinput(user_question):
 
             
 def main():
-    st.set_page_config(page_title="Chat with multiple PDFs",page_icon=":books:")
+    st.set_page_config(page_title="Chat with multiple PDFs, TXTs, and TXT.GZs",page_icon=":books:")
     
     st.write(css, unsafe_allow_html=True)
 
@@ -119,7 +123,7 @@ def main():
         st.session_state.chat_history = None
     
     #st.write(css, unsafe_allow_html=True)
-    st.header("Chat with Multiple PDFs Locally (Mistral) :books:")
+    st.header("Chat with Multiple PDFs, TXTs, and TXT.GZs Locally (Mistral) :books:")
     #st.text_input("Ask a question about your documents:")
     user_question = st.text_input("Ask a question about your documents:")
     if user_question:
@@ -127,11 +131,11 @@ def main():
   
     with st.sidebar:
         st.subheader("Your documents")
-        pdf_docs=st.file_uploader("Upload your PDFs here and click on 'Process'", accept_multiple_files=True)
+        docs = st.file_uploader("Upload your PDFs, TXTs, and TXT.GZs here and click on 'Process'", accept_multiple_files=True, type=['pdf', 'txt', 'gz'])
         if st.button("Process"):
             with st.spinner("Processing"):
-                # get pdf text
-                raw_text = get_pdf_text(pdf_docs)
+                # get document text
+                raw_text = get_document_text(docs)
 
                 # get the text chunks
                 text_chunks = get_text_chunks(raw_text)
