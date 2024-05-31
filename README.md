@@ -1,6 +1,6 @@
 # Repository Description
 
-This repository contains an implementation of an offline Retrieval-Augmented Generation (RAG) model for a Document Chatbot: Conversational AI for multiformat PDFs, TXTs, and GZIP Files. The model combines cutting-edge technologies and tools to provide a robust, interactive, and efficient document querying system. Users can upload multiple document formats, including PDFs, plain text files, and gzip-compressed text files, and interact with the documents through a conversational AI interface.
+This repository contains an implementation of an offline Retrieval-Augmented Generation (RAG) model for a Document Chatbot, providing Conversational AI capabilities for multiformat PDFs, TXTs, and GZIP files.. The model combines cutting-edge technologies and tools to provide a robust, interactive, and efficient document querying system. Users can upload multiple document formats, including PDFs, plain text files, and gzip-compressed text files, and interact with the documents through a conversational AI interface.
 
 ## Key Technologies and Tools
 
@@ -15,12 +15,23 @@ This repository contains an implementation of an offline Retrieval-Augmented Gen
 
 This model utilizes the Ollama software tool to run large language models (LLMs) locally on a computer, enabling offline language processing tasks. Ollama provides access to a diverse set of pre-trained LLM models. Langchain complements Ollama by acting as a framework, allowing developers to integrate these locally-run LLMs into applications. This makes the LLMs easier to use and build upon. Langchain goes a step further by enabling the development of RAG systems, which use various tools to process information, resulting in more refined and informative responses from the language model.
 
-## Using the RAG
+
+
+## Extra Features
+
+- **Multi-format Document Support:** Upload and process PDFs, TXTs, and TXT.GZ files.
+- **Text Chunking:** Efficiently splits large texts into manageable chunks for better processing.
+- **Vector Store Creation:** Uses FAISS to create a vector store of document embeddings.
+- **Conversational Interface:** Enables users to interact with the documents through natural language queries.
+- **Memory Buffer:** Maintains context across conversations for a seamless user experience.
+
+
+## Using the chatbot
 
 1. Install Ollama from [https://ollama.com/download](https://ollama.com/download)
 Using Python Terminal: 
 2. Clone the repository: ```
-git clone https://github.com/oraibalmegdadi/LocalRAG.git ```
+git clone https://github.com/oraibalmegdadi/AI-Based-Multiformat-Document-Chatbot```
 
 3. Download requiremnts: ```
 pip install -r requirements.txt```
