@@ -1,23 +1,23 @@
-import streamlit as st
-from langchain_community.document_loaders import WebBaseLoader
-from langchain_community import embeddings
-from langchain_community.llms import Ollama
-from langchain_community.embeddings import OllamaEmbeddings
-from langchain_core.runnables import RunnablePassthrough
-from langchain_core.output_parsers import StrOutputParser
-from langchain_core.prompts import ChatPromptTemplate
+import streamlit as st  # Used for creating interactive web applications for ML and data science.
+from langchain_community.document_loaders import WebBaseLoader  # Provides functionality for loading documents from the web.
+from langchain_community import embeddings  # Used for embedding text data.
+from langchain_community.llms import Ollama  # Implements large language models.
+from langchain_community.embeddings import OllamaEmbeddings  # Implements embeddings using Ollama models.
+from langchain_core.runnables import RunnablePassthrough  # Provides a runnable for passing input/output.
+from langchain_core.output_parsers import StrOutputParser  # Used for parsing string output.
+from langchain_core.prompts import ChatPromptTemplate  # Implements chat prompt templates.
+from dotenv import load_dotenv  # Required to load environment variables from .env files.
+from PyPDF2 import PdfReader  # Used for reading PDF files.
+from langchain.text_splitter import CharacterTextSplitter  # Used for splitting text into chunks.
+from langchain.vectorstores import FAISS  # Provides functionality for similarity search and clustering of dense vectors.
+import InstructorEmbedding  # Used for instructor embeddings.
+from langchain.memory import ConversationBufferMemory  # Implements conversation memory functionality.
+from langchain.chains import ConversationalRetrievalChain  # Implements conversational retrieval chains.
+from htmlTemplates import css, bot_template, user_template  # Provides HTML templates for UI.
+import json  # Used for working with JSON data.
+import requests  # Used for making HTTP requests.
+import gzip  # Used for reading and writing gzip files.
 
-from dotenv import load_dotenv # require to Connect with the API token Key 
-from PyPDF2 import PdfReader # used for reading the pdf files in get_pdf_text
-from langchain.text_splitter import CharacterTextSplitter #used to divid the text (from all the documents) to chunks
-from langchain.vectorstores import FAISS
-import InstructorEmbedding
-from langchain.memory import ConversationBufferMemory
-from langchain.chains import ConversationalRetrievalChain
-from htmlTemplates import css, bot_template, user_template
-import json 
-import requests
-import gzip
 
 
 def get_document_text(docs):
@@ -58,13 +58,10 @@ def get_vectorstore(text_chunks):
     #model_name = 'mistralai/Mistral-7B-Instruct-v0.2'
     #embeddings.ollama.pull(model_name)
     
-    
-    
     model_name='mistral'
     embed=embeddings.ollama.OllamaEmbeddings(model=model_name)
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embed)  
 
-    
     with open('embeddingsMistral.txt', 'w') as f:
         for i in range(vectorstore.index.ntotal):
             embedding = vectorstore.index.reconstruct(i)
@@ -139,13 +136,9 @@ def main():
 
                 # get the text chunks
                 text_chunks = get_text_chunks(raw_text)
-                #st.write(text_chunks)
 
                 # create vector store
                 vectorstore = get_vectorstore(text_chunks)
-                #st.write(vectorstore)
-
-
                 
                 # create conversation chain
                 st.session_state.conversation = get_conversation_chain(
