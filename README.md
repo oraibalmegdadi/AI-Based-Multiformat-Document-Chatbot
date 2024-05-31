@@ -28,7 +28,7 @@ This model utilizes the Ollama software tool to run large language models (LLMs)
 
 ## Using the Chatbot
 
-1. **Install Ollama** from [https://ollama.com/download](https://ollama.com/download).
+1. **Install and Run Ollama** from [https://ollama.com/download](https://ollama.com/download).
 
    **Using Python Terminal:**
 
