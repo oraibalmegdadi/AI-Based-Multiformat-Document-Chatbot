@@ -1,16 +1,15 @@
 # Repository Description
 
-This repository contains an implementation for an offline Retrieval-Augmented Generation (RAG) model. The model is based on various technologies, software, and platforms, primarily:
+This repository contains an implementation of an offline Retrieval-Augmented Generation (RAG) model. The model leverages a combination of cutting-edge technologies and tools to provide a robust, interactive, and efficient document querying system. Users can upload multiple document formats, including PDFs, plain text files, and gzip-compressed text files, and interact with the documents through a conversational AI interface.
 
-1. [Ollama](https://ollama.com/)
+## Key Technologies and Tools
 
-2. Langchain
+- **[Ollama](https://ollama.com/)**: Used for large language models and embeddings.
+- **[Langchain](https://www.langchain.com/)**: Provides the framework for building applications with language models.
+- **[Mistral](https://mistral.ai/)**: A state-of-the-art language model used for generating responses.
+- **[FAISS](https://ai.meta.com/tools/faiss/)**: A library for efficient similarity search and clustering of dense vectors.
+- **[Streamlit](https://streamlit.io/)**: An open-source app framework for Machine Learning and Data Science teams to create interactive web applications.
 
-3. Mistral
-
-4. FAISS
-
-5. Streamline
 
 ## Main Model Description
 
