@@ -29,7 +29,8 @@ This model utilizes the Ollama software tool to run large language models (LLMs)
 ## Using the chatbot
 
 1. Install Ollama from [https://ollama.com/download](https://ollama.com/download)
-Using Python Terminal: 
+
+**Using Python Terminal: **
 2. Clone the repository: ```
 git clone https://github.com/oraibalmegdadi/AI-Based-Multiformat-Document-Chatbot```
 
