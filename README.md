@@ -17,7 +17,7 @@ This model utilizes the Ollama software tool to run large language models (LLMs)
 
 ## Extra Features
 
-- **Multi-format Document Support:** Upload and process PDFs, TXTs, and TXT.GZ files.
+- **Multi-format Document Support:** Upload and process PDFs and TXTs files.
 - **Text Chunking:** Efficiently splits large texts into manageable chunks for better processing.
 - **Vector Store Creation:** Uses FAISS to create a vector store of document embeddings.
 - **Conversational Interface:** Enables users to interact with the documents through natural language queries.
@@ -41,6 +41,7 @@ This model utilizes the Ollama software tool to run large language models (LLMs)
     ```
 
 4. **Run Ollama with the selected LLM**:
+	The default LLM is "Mistral". You can choose other LLMs from the supported libraries on the Ollama website: [Ollama Library](https://ollama.com/library).
     ```sh
     ollama pull mistral
     ```
