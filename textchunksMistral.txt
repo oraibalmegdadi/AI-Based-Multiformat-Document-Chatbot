@@ -1,0 +1,134 @@
+chunk_0: high concentrations in waters in the absence of apparent fecal input or human pathogens, and in turn,
+undermining its reliability as an indicator of recent fecal contamination. Given the capacity of
+environmental strains of E. coli to replicate in the environment, the objective of this research work was to
+investigate whether any of the routinely measured parameters could predict the onset of an E. coli bloom in
+drinking water reservoirs. Information from historical catchment, weather, and water quality data were
+extracted for a number of Australian reservoirs that experienced E. coli blooms. Data were preprocessed and
+analyzed with time series analysis, linear and nonlinear regression, and self‐organizing maps. Findings
+suggest that warm water, dry catchments, algal blooms, and nutrient availability were important factors in
+increasing the propensity for a bloom. Nutrient availability can be affected by many extrinsic factors that are
+chunk_1: increasing the propensity for a bloom. Nutrient availability can be affected by many extrinsic factors that are
+often not well characterized, such as bushfires and back burning, decomposition of aquatic species, and dust
+storms. Based on data analysis outputs, a data‐driven Bayesian Network model was developed, which,
+considering the paucity of data for some key input parameters, should only be used to trigger more intensive
+monitoring programs whenever the predicted risk of a bloom exceeds predetermined key thresholds. Such
+new data could be fed into the model to continuously improve its accuracy, and to eventually predict and
+proactively manage future blooms.
+1. Introduction
+Total coliforms are defined as gram‐negative, facultative anaerobic, rod‐shaped bacteria. As some strains can
+grow in the environment outside of the gastric tract, coliforms are considered to be unreliable indicators of
+chunk_2: grow in the environment outside of the gastric tract, coliforms are considered to be unreliable indicators of
+sewage contamination (Tyagi et al., 2006). On the other hand, Escherichia coli has been commonly used as an
+indicator since it is more likely to be associated with fecal contamination (Cumberland et al., 2012), and a
+number of studies have been conducted to model its concentrations and transport mechanisms in water
+environments (e.g., Hondzo and Al‐Homoud (2007) or Dwivedi et al. (2013)). However, there is increasing
+evidence against it being an accurate indicator of fecal input (Blyton & Gordon, 2017); for instance, there
+seems to be a number of different phenotypes of E. coli, with some appearing to have adapted to a planktonic
+lifestyle in aquatic ecosystems and able to persist and replicate under favorable conditions, causing blooms.
+Others can survive outside of animal hosts by entering a viable but nonculturable state. Under this hypothesis,
+chunk_3: Others can survive outside of animal hosts by entering a viable but nonculturable state. Under this hypothesis,
+bacterial cells would enter a dormant state and could “resuscitate” given certain environmental conditions
+such as favorable temperature, pH, carbon, and nutrients (Pinto et al., 2011; Wei & Zhao, 2018;
+Winfield & Groisman, 2003). Considering that in Australia, where this research was conducted, the
+Australian Drinking Water Guidelines (NHRMC, 2011) presently do not cover environmental or blooming
+E. coli, it is important to better understand it and explore the potential for predicting blooms. Based on this,
+the main objective of this study, which was part of a larger project (Sinclair, 2019), was to collect and analyze
+historical catchment data for a number of Australian reservoirs and investigate whether there were any
+parameter which were significantly correlated to the occurrence of environmental E. coli blooms. A second
+chunk_4: parameter which were significantly correlated to the occurrence of environmental E. coli blooms. A second
+objective was, based on the results of the data analysis, to develop a predictive model for environmental E.
+coli blooms. A probabilistic approach was used, and a Bayesian Network (BN) model was developed for this
+task. BNs have been extensively applied in environmental modeling (Aguilera et al., 2011) and in the prediction
+of health‐related water quality events (Bertone, Sahin, et al., 2016) and represent an ideal modeling
+approach for uncertain, data‐scarce systems (Barton et al., 2012; Uusitalo, 2007).
+©2019. American Geophysical Union.
+All Rights Reserved.
+RESEARCH ARTICLE
+10.1029/2019WR025736
+Key Points:
+• E. coli blooms in Australian water
+reservoirs were analyzed
+• Potential predictors were identified
+but more data are required
+Supporting Information:
+• Supporting Information S1
+Correspondence to:
+E. Bertone,
+e.bertone@griffith.edu.au
+Citation:
+chunk_5: • Potential predictors were identified
+but more data are required
+Supporting Information:
+• Supporting Information S1
+Correspondence to:
+E. Bertone,
+e.bertone@griffith.edu.au
+Citation:
+Bertone, E., Kozak, S., & Roiko, A.
+(2019). Understanding and modeling
+the occurrence of e. coli blooms in
+drinking water reservoirs. Water
+Resources Research, 55,
+https://doi.org/10.1029/2019WR025736
+Received 6 JUN 2019
+Accepted 25 NOV 2019
+BERTONE ET AL.
+10,518–10,526.
+Published online 10 DEC 2019
+10,518
+1.1. Background
+An increasing number of studies seem to prove that measurements of fecal indicator organisms might not be
+not suitable for characterizing human health risks in water (Byappanahalli et al., 2006; Edge et al., 2013;
+Ishii & Sadowsky, 2008; Luo et al., 2011; Perchec‐Merien & Lewis, 2013; Whitman et al., 2003).
+Nevertheless, E. coli is a water quality indicator that is extensively used in both fresh and marine waters
+chunk_6: Nevertheless, E. coli is a water quality indicator that is extensively used in both fresh and marine waters
+worldwide. This bacterium is both genetically and phenotypically diverse (Ishii & Sadowsky, 2008), coming
+from a range of sources including humans (Odonkor & Ampofo, 2013), other warm‐blooded mammals such
+as cattle (Friesema et al., 2011) or poultry (Johnson et al., 2007), and environmental sources. A number of
+research studies have isolated environmental E. coli strains from both soil and water, demonstrating through
+DNA fingerprinting that they are distinct from animal‐borne isolates (Byappanahalli et al., 2006; Ishii et al.,
+2006). Importantly, environmental strains of E. coli have been reported to bloom in the environment, resulting
+in high concentrations in waters in the absence of fecal input or human pathogens (Anderson
+et al., 2005).
+In a recent review paper, Jang et al. (2017) provide, among other, a list of environmental factors which can
+chunk_7: et al., 2005).
+In a recent review paper, Jang et al. (2017) provide, among other, a list of environmental factors which can
+affect survival and growth of E. coli. High freshwater temperatures (e.g., exceeding 18 °C) and availability of
+nutrients are cited most frequently as the two most important variables involved in the survival and growth
+of environmental E. coli strains (Byappanahalli et al., 2006; Davies et al., 1995; Edge et al., 2013; Faust et al.,
+1975; Ishii & Sadowsky, 2008; Liu et al., 2006; Winfield & Groisman, 2003). Specific nutrients include carbon,
+nitrogen, phosphorus, and sulfur (Anderson et al., 2005; Faust et al., 1975; Ishii & Sadowsky, 2008).
+Other promoting factors suggested in previous research include presence of aquatic flora (Perchec‐Merien
+& Lewis, 2013; Whitman et al., 2003), rainfall/droughts (Edge et al., 2013; Whitman et al., 2004), preceding
+chunk_8: & Lewis, 2013; Whitman et al., 2003), rainfall/droughts (Edge et al., 2013; Whitman et al., 2004), preceding
+dust storms or bushfires (Chafer, 2007; Power et al., 2005), and presence of macrophytic algae and sand (Ishii
+& Sadowsky, 2008; Sadowsky & Whitman, 2011). Conversely, the magnitude of, and exposure to, solar radiation
+is the primary mechanism for E. coli decay (Anderson et al., 2005; Lim et al., 2011). This is supported by
+experiments described in Whitman et al. (2004) who showed that the time of sampling can have a significant
+impact on E. coli counts, with samples taken at 7 a.m. being up to 70% higher than samples taken at 10 a.m.
+on the same day, due to solar radiation (Whitman et al., 2004).
+The comprehensive analysis of the data set from five, substantially different reservoirs, provides an opportunity
+to identify on a larger scale which specific parameters, suggested in previous research, are correlated
+consistently with E. coli blooms.
+chunk_9: to identify on a larger scale which specific parameters, suggested in previous research, are correlated
+consistently with E. coli blooms.
+2. Materials and Methods
+2.1. Data Collection and Analysis
+Historical water quality data were obtained from five reservoirs around Australia located in different climatic
+zones, namely (Figure 1),
+1. Grahamstown Dam (GT‐New South Wales‐Maximum capacity: 182,305 ML)
+2. Warragamba Dam (WD‐New South Wales‐Maximum capacity: 2,310 GL)
+3. Hinze Dam (HD‐Queensland‐Maximum capacity: 310,730 ML)
+4. Maroon Dam (MD‐Queensland‐Maximum capacity: 44,319 ML)
+5. Millstream Dam (WA‐Western Australia‐Maximum capacity: 810 ML).
+Weather data from the Australian Bureau of Meteorology and other types of data (e.g., land use and
+bushfire/dust storm occurrences) from water utilities or other governmental agencies were acquired. The
+data covered a wide range of frequencies (hourly to yearly), duration (from less than 5 years for
+chunk_10: data covered a wide range of frequencies (hourly to yearly), duration (from less than 5 years for
+Millstream Dam to over 20 for Warragamba Dam), and unit/method of measurement (e.g., colony‐forming
+units or CFU and most probable number or MPN for E. coli). An important missing information was the culture
+temperature applied for the total coliform counts, as environmental isolates might have optimum
+growth at different temperature to mammalian sources.
+The available data were first described by plotting each variable independently to visualize trends. Overlay
+plots were then created to visualize trends between E. coli counts and other available weather and water
+quality parameters, including key variables identified in the literature and
