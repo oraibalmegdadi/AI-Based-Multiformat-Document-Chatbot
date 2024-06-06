@@ -1,6 +1,6 @@
 # Repository Description
 
-This repository contains an implementation of an offline Retrieval-Augmented Generation (RAG) model for a Document Chatbot, providing Conversational AI capabilities for multiformat PDFs and TXTs. The model combines cutting-edge technologies and tools to provide a robust, interactive, and efficient document querying system. Users can upload multiple document formats, including PDFs, and plain text files, and interact with the documents through a conversational AI interface. Moreover, The application allow to save the conversation and  has the ability to load it later and continue the conversation without a need to upload the documents again. Additionally, the model extracts text chunks and generates embeddings for each document, which can be useful for further analysis or processing tasks.
+This repository contains an implementation of an offline Retrieval-Augmented Generation (RAG) model for a Document Chatbot, providing Conversational AI capabilities for multiformat PDFs and TXTs. The model combines cutting-edge technologies and tools to provide a robust, interactive, and efficient document querying system. Users can upload multiple document formats, including PDFs, and text files, and interact with the documents through a conversational AI interface. Moreover, The application allow to save the conversation and  has the ability to load it later and continue the conversation without a need to upload the documents again. Additionally, the model extracts text chunks and generates embeddings for each document, which can be useful for further analysis or processing tasks.
 ## Key Technologies and Tools
 
 - **[Ollama](https://ollama.com/)**: Used for large language models and embeddings.
@@ -41,7 +41,7 @@ This model utilizes the Ollama software tool to run large language models (LLMs)
     ```
 
 4. **Run Ollama with the selected LLM**:
-	The default LLM is "Mistral". You can choose other LLMs from the supported libraries on the Ollama website: [Ollama Library](https://ollama.com/library).
+	The default LLM is "mistral". You can choose other LLMs from the supported libraries on the Ollama website: [Ollama Library](https://ollama.com/library).
     Make sure you update the variable "model_name" inside the OfflineRAGapp-Mistral.py also if you want to change the LLM library
 	```sh
     ollama pull mistral
