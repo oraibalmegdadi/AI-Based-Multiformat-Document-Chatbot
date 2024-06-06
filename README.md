@@ -42,7 +42,8 @@ This model utilizes the Ollama software tool to run large language models (LLMs)
 
 4. **Run Ollama with the selected LLM**:
 	The default LLM is "Mistral". You can choose other LLMs from the supported libraries on the Ollama website: [Ollama Library](https://ollama.com/library).
-    ```sh
+    Make sure you update the variable "model_name" inside the OfflineRAGapp-Mistral.py also if you want to change the LLM library
+	```sh
     ollama pull mistral
     ```
 
@@ -64,7 +65,7 @@ This model utilizes the Ollama software tool to run large language models (LLMs)
         Save the current state of the conversation to a file.
 
     - **Option 3: Load a Previous Conversation**:
-        Load a previously saved conversation and continue the conversation from where you left off.
+        Load a previously saved conversation and continue the conversation from where you left off. You can use damsConversation file on Example folder we on this repository
 
     - **Option 4: Clear the Conversation**:
         Clear the conversation history and start from the beginning.
