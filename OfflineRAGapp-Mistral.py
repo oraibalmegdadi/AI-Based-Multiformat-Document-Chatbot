@@ -6,7 +6,6 @@ from langchain_community.embeddings import OllamaEmbeddings  # Embeddings relate
 from langchain_core.runnables import RunnablePassthrough  # RunnablePassthrough from Langchain core
 from langchain_core.output_parsers import StrOutputParser  # Output parser for string output
 from langchain_core.prompts import ChatPromptTemplate  # Chat prompt template from Langchain core
-
 from dotenv import load_dotenv  # Library for loading environment variables from a .env file
 from PyPDF2 import PdfReader  # Library for reading PDF files
 from langchain.text_splitter import CharacterTextSplitter  # Library for splitting text into characters
@@ -20,6 +19,9 @@ import requests  # Library for making HTTP requests
 import gzip  # Library for working with gzip-compressed files
 import pickle  # Library for serializing and deserializing Python objects
 import os  # Library for interacting with the operating system
+from shutil import copytree  # Library for recursively copying a directory and its contents
+
+
 
 model_name="mistral" #Other LLMs model can be choosen from https://ollama.com/library 
 def get_document_text(docs:list)->str:
@@ -194,6 +196,30 @@ def clear_conversation():
     st.session_state.chat_history = []
     st.session_state.chat_display = []
     st.experimental_rerun()
+
+def add_custom_static_path():
+    """
+    Adds a custom static path for serving images within the Streamlit app.
+
+    This function copies the custom avatars directory to Streamlit's internal static file directory
+    to ensure that the images are served correctly.
+
+    """
+    # Streamlit's static directory path
+    static_path = os.path.join(st.__path__[0], 'static')
+    
+    # Custom avatars directory
+    custom_static_dir = 'avatars'
+    
+    # Target avatars directory within Streamlit static directory
+    target_dir = os.path.join(static_path, 'avatars')
+    
+    # Copy the custom avatars directory to the target directory if it doesn't exist
+    if not os.path.exists(target_dir):
+        copytree(custom_static_dir, target_dir)
+
+
+add_custom_static_path()
 
 
 def main():

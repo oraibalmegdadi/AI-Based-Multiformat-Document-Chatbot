@@ -1,3 +1,5 @@
+# htmlTemplates.py
+
 css = '''
 <style>
 .chat-message {
@@ -13,22 +15,22 @@ css = '''
   width: 20%;
 }
 .chat-message .avatar img {
-  max-width: 78px;
-  max-height: 78px;
+  width: 78px;
+  height: 78px;
   border-radius: 50%;
-  object-fit: cover;
 }
 .chat-message .message {
   width: 80%;
   padding: 0 1.5rem;
   color: #fff;
 }
+</style>
 '''
 
 bot_template = '''
 <div class="chat-message bot">
     <div class="avatar">
-        <img src="https://i.ibb.co/cN0nmSj/Screenshot-2023-05-28-at-02-37-21.png" style="max-height: 78px; max-width: 78px; border-radius: 50%; object-fit: cover;">
+        <img src="/avatars/RobotBook.jpg" style="width: 78px; height: 78px; border-radius: 50%;">
     </div>
     <div class="message">{{MSG}}</div>
 </div>
@@ -37,9 +39,8 @@ bot_template = '''
 user_template = '''
 <div class="chat-message user">
     <div class="avatar">
-        <img src="http://localhost:8888/view/mistralLanChain/me.png" style="max-height: 78px; max-width: 78px; border-radius: 50%; object-fit: cover;">
+        <img src="/avatars/Person.jpg" style="width: 78px; height: 78px; border-radius: 50%;">
     </div>    
     <div class="message">{{MSG}}</div>
 </div>
 '''
-
