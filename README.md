@@ -64,13 +64,14 @@ This model utilizes the Ollama software tool to run large language models (LLMs)
 	- **Option 2: Load a Previous Conversation**:
 		Load a previously saved conversation and continue the conversation from where you left off. You can use the `damsConversation.pkl` file in the example folder provided in this repository.
 
-	After creating a new conversation or loading a previous conversation, you have the following options:
+	After creating a new conversation or loading a previous one, you have the following options:
 
 	- **Option 1: Save the Conversation**:
 		Save the current state of the conversation to a file.
 
 	- **Option 2: Clear the Conversation**:
 		Clear the conversation history and start from the beginning.
+		
 ![langchain](RAG.png)
 
 
@@ -127,3 +128,6 @@ The image illustrates the overall steps of the model. It begins with uploading m
 
 2. Playlist by @datasciencebasics: https://www.youtube.com/watch?v=0iBV-eM418Y&list=PLz-qytj7eIWX-bpcRtvkixvo9fuejVr8y
 
+## Avatars: 
+
+Avatars are created for free from   [https://openart.ai/home](https://openart.ai/home)  

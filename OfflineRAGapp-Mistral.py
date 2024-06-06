@@ -21,8 +21,8 @@ import gzip  # Library for working with gzip-compressed files
 import pickle  # Library for serializing and deserializing Python objects
 import os  # Library for interacting with the operating system
 
-
-def get_document_text(docs):
+model_name="mistral" #Other LLMs model can be choosen from https://ollama.com/library 
+def get_document_text(docs:list)->str:
     """
     Extracts text from a list of uploaded documents.
     Supports PDF and plain text files.
@@ -84,7 +84,7 @@ def get_vectorstore(text_chunks):
     Returns:
     vectorstore: FAISS vector store containing the text embeddings.
     """
-    model_name='mistral'
+    
     embed=embeddings.ollama.OllamaEmbeddings(model=model_name)
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embed)
     
@@ -107,7 +107,7 @@ def get_conversation_chain(vectorstore):
     Returns:
     conversation_chain: Conversational retrieval chain for interacting with the user.
     """
-    llm=Ollama(model="mistral")
+    llm=Ollama(model=model_name)
     memory = ConversationBufferMemory(
         memory_key='chat_history', return_messages=True)
     conversation_chain = ConversationalRetrievalChain.from_llm(
