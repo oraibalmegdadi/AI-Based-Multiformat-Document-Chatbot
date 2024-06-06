@@ -1,7 +1,6 @@
 # Repository Description
 
-This repository contains an implementation of an offline Retrieval-Augmented Generation (RAG) model for a Document Chatbot, providing Conversational AI capabilities for multiformat PDFs, TXTs, and GZIP files. The model combines cutting-edge technologies and tools to provide a robust, interactive, and efficient document querying system. Users can upload multiple document formats, including PDFs, plain text files, and gzip-compressed text files, and interact with the documents through a conversational AI interface. Additionally, the model extracts text chunks and generates embeddings for each document, which can be useful for further analysis or processing tasks.
-
+This repository contains an implementation of an offline Retrieval-Augmented Generation (RAG) model for a Document Chatbot, providing Conversational AI capabilities for multiformat PDFs and TXTs. The model combines cutting-edge technologies and tools to provide a robust, interactive, and efficient document querying system. Users can upload multiple document formats, including PDFs, and plain text files, and interact with the documents through a conversational AI interface. Moreover, The application allow to save the conversation and  has the ability to load it later and continue the conversation without a need to upload the documents again. Additionally, the model extracts text chunks and generates embeddings for each document, which can be useful for further analysis or processing tasks.
 ## Key Technologies and Tools
 
 - **[Ollama](https://ollama.com/)**: Used for large language models and embeddings.
@@ -65,7 +64,7 @@ This model utilizes the Ollama software tool to run large language models (LLMs)
 
 
 
-## Main Functions Explanation
+## Explanation of Main Functions
 
 The image illustrates the overall steps of the model. It begins with uploading multiple PDF files, followed by processing them before engaging in conversation, as outlined below:
 
@@ -80,12 +79,37 @@ The image illustrates the overall steps of the model. It begins with uploading m
 
 3. Call the `get_vectorstore(text_chunks)` function to generate embeddings for the text chunks and store them in a vector database.
    - **Main method**:
-     - **Embeddings**: our model use Mirtal llm, other supported models could be found at https://ollama.com/library
-     - **FAISS**: A library for efficient similarity search  A library that allows developers to quickly search for embeddings of multimedia documents that are similar to each other.. [More info](https://engineering.fb.com/2017/03/29/data-infrastructure/faiss-a-library-for-efficient-similarity-search/)
+     - **Embeddings**: our model use Mistral LLM, other supported models could be found at [Ollama Library](https://ollama.com/library)
+     - **FAISS**: A library for efficient similarity search  A library that allows developers to quickly search for embeddings of multimedia documents that are similar to each other. [More info](https://engineering.fb.com/2017/03/29/data-infrastructure/faiss-a-library-for-efficient-similarity-search/)
    - **Convert the embeddings vectorspace to txt file (embeddings.txt)**
 
 4. Call the `get_conversation_chain(vectorstore)` function to create a conversational chain with the generated vectorstore.
    - **This operation relies on the langchain library for creating conversational chains.**
+
+5. **Save State Function**
+   - Call the `save_state(filename)` function to save the current state of the conversation.
+   - **Parameters**: 
+     - `filename`: The name of the file to save the state.
+   - **Main method**: 
+     - Uses the `pickle` library to serialize and save the current conversation state (conversation and chat history) to a file.
+   - **Output**: State saved successfully message.
+
+6. **Load State Function**
+   - Call the `load_state(filename)` function to load a previously saved conversation state.
+   - **Parameters**: 
+     - `filename`: The name of the file to load the state from.
+   - **Main method**:
+     - Uses the `pickle` library to deserialize and load the saved conversation state (conversation and chat history) from a file.
+     - Populates the chat display directly and triggers an update to reflect the loaded state.
+   - **Output**: State loaded successfully message or error if no saved state is found.
+
+7. **Clear Conversation Function**
+   - Call the `clear_conversation()` function to clear the current conversation, chat history, and chat display.
+   - **Main method**:
+     - Resets the session state variables `conversation`, `chat_history`, and `chat_display` to their initial values.
+     - Triggers an update to reflect the cleared state.
+   - **Output**: Conversation cleared and the interface is reset.
+
 
 ## Useful Tutorials: 
 1. Playlist by @alejandro_ao:  https://www.youtube.com/watch?v=LBNpyjcbv0o&list=PLMVV8yyL2GN_n41v1ESBvDHwMbYYhlAh1
