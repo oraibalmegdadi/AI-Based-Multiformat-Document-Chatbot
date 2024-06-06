@@ -16,7 +16,6 @@ This repository contains an implementation of an offline Retrieval-Augmented Gen
 This model utilizes the Ollama software tool to run large language models (LLMs) locally on a computer, enabling offline language processing tasks. Ollama provides access to a diverse set of pre-trained LLM models. Langchain complements Ollama by acting as a framework, allowing developers to integrate these locally-run LLMs into applications. This makes the LLMs easier to use and build upon. Langchain goes a step further by enabling the development of RAG systems, which use various tools to process information, resulting in more refined and informative responses from the language model.
 
 
-
 ## Extra Features
 
 - **Multi-format Document Support:** Upload and process PDFs, TXTs, and TXT.GZ files.
