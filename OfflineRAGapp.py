@@ -252,7 +252,7 @@ def main():
 
     st.header("Chat with Multiple PDFs and TXTs Locally ("+model_name+") :books:")
 
-    user_question = st.text_input("Ask a question about your documents:")
+    user_question = st.text_input("Ask a question about your documents:", value="")
     if user_question:
         handle_userinput(user_question)
 
