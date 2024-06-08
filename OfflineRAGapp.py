@@ -256,6 +256,8 @@ def main():
     if user_question:
         handle_userinput(user_question)
 
+    auto_question = ""
+
     # Display the chat history in the main area
     for message in st.session_state.chat_display:
         st.write(message, unsafe_allow_html=True)
@@ -269,6 +271,9 @@ def main():
                 text_chunks = get_text_chunks(raw_text)
                 vectorstore = get_vectorstore(text_chunks)
                 st.session_state.conversation = get_conversation_chain(vectorstore)
+                auto_question = "what is this about?"
+
+
 
         save_filename = st.text_input("Save filename", value="conversation_state1.pkl")
         if st.button("Save"):
@@ -280,6 +285,9 @@ def main():
 
         if st.button("Clear"):
             clear_conversation()
+
+    if auto_question is not None:
+        handle_userinput(auto_question)
 
 if __name__ == '__main__':
     main()
