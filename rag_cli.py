@@ -23,7 +23,7 @@ import gzip  # Library for working with gzip-compressed files
 import pickle  # Library for serializing and deserializing Python objects
 import os  # Library for interacting with the operating system
 from shutil import copytree  # Library for recursively copying a directory and its contents
-
+import time
 
 # %%
 
@@ -412,6 +412,10 @@ def process_one_cmd(user_input: str) -> None:
         clear_conversation()
     elif cmd[0] == "/history":
         print_chat_history()
+    elif cmd[0] == "/sleep":
+        time.sleep(int(cmd[1]))
+    elif cmd[0] == "/log":
+        log_file = cmd[1]
 
     elif cmd[0] == "/execute":
         cmd_execute(cmd[1])
