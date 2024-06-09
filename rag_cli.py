@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 #import streamlit as st  # Streamlit library for building interactive web apps
 import langchain_community
 from langchain_community.document_loaders import WebBaseLoader  # Library for loading documents from the web
@@ -10,7 +12,12 @@ from langchain_core.prompts import ChatPromptTemplate  # Chat prompt template fr
 from dotenv import load_dotenv  # Library for loading environment variables from a .env file
 from PyPDF2 import PdfReader  # Library for reading PDF files
 from langchain.text_splitter import CharacterTextSplitter  # Library for splitting text into characters
-from langchain.vectorstores import FAISS  # FAISS library for vector storage and similarity search
+
+#FIXME
+from langchain_core._api.deprecation import suppress_langchain_deprecation_warning
+
+with suppress_langchain_deprecation_warning():
+    from langchain.vectorstores import FAISS  # FAISS library for vector storage and similarity search
 import InstructorEmbedding  # Custom instructor embedding module
 
 import langchain
@@ -24,17 +31,28 @@ import pickle  # Library for serializing and deserializing Python objects
 import os  # Library for interacting with the operating system
 from shutil import copytree  # Library for recursively copying a directory and its contents
 import time
+import readline
 
+#TODO:
+#readline.set_completer(complete)
+#  ....["/ls", "/quit", "/execute", "/help", "/read", "/load", "/save"])
+readline.parse_and_bind('tab: complete')
 # %%
+
+HELP_CMDs= """Available internal commands:
+              /read FileName -- reads a pdf or txt into RAG
+              /load /save /clean  -- manages the current context
+              /execute -- executes commands/dialog from a file
+              /ls -- shows folders
+              /help /quit /history -- controls the RAG CLI"""
 
 model_name = "llama3" #Other LLMs model can be choosen from https://ollama.com/library, example:
 #model_name="mistral" #Other LLMs model can be choosen from https://ollama.com/library 
 
+global log_file
+
 log_file = "log"  # Store current embeddings and text chunks in a log
 #log_file = None  # don't store embeddings and text chunks
-
-source_docs = ['Exemplo.pdf']
-
 
 
 # %%%
@@ -185,7 +203,7 @@ def prompt_llm(user_question):
         init_conversation()
         
         
-    response = conversation({'question': user_question})
+    response = conversation.invoke(input = user_question) #conversation({'question': user_question})
     chat_history = response['chat_history']
     print_chat_history()
 
@@ -391,7 +409,7 @@ def process_one_cmd(user_input: str) -> None:
     Os argumentos podem ou não estar em maiúsculas.
     Ignora os comandos inválidos.
     """
-    
+    global log_file 
     
     if len(user_input) > 0 and user_input[0] != '/':
         prompt_llm(user_input)
@@ -412,9 +430,28 @@ def process_one_cmd(user_input: str) -> None:
         clear_conversation()
     elif cmd[0] == "/history":
         print_chat_history()
+    elif cmd[0] == "/ls":
+        col = 0
+        try:
+            if cmd[1] == "":
+                l = os.listdir()
+            else:
+                l = os.listdir(cmd[1])
+        except Exception as SomeException:
+            print(f"{SomeException}")
+            l = []
+
+        for f in l:
+            print(f"{f:25}",end='\t')
+            if(col > 70):
+                col = 0
+                print()
+            col += max(33, len(f))
     elif cmd[0] == "/sleep":
+        print("taking a break for "+cmd[1]+"s...")
         time.sleep(int(cmd[1]))
     elif cmd[0] == "/log":
+        print("log changed to "+cmd[1])
         log_file = cmd[1]
 
     elif cmd[0] == "/execute":
@@ -424,10 +461,8 @@ def process_one_cmd(user_input: str) -> None:
     elif cmd[0] == "/quit":
         pass
 
-    # TODO: other commands
     elif cmd[0] == "/help":
-        print("""commands:
-              /read, /load, /save, /clean, /execute, /help, /quit /history""")
+        print(HELP_CMDs)
     
     else:
         print('Unknown command:', cmd[0])
@@ -453,7 +488,8 @@ def force_init_conversation() -> None:
 "and has the ability to load it later and continue the conversation without "+
 "a need to upload the documents again. Additionally, the model extracts text "+
 "chunks and generates embeddings for each document, which can be useful for "+
-"further analysis or processing tasks."]
+"further analysis or processing tasks.",
+HELP_CMDs]
     vectorstore = get_vectorstore(sample_text)
     conversation = get_conversation_chain(vectorstore)
     
