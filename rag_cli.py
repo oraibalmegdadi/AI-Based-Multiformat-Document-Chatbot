@@ -32,6 +32,7 @@ import os  # Library for interacting with the operating system
 from shutil import copytree  # Library for recursively copying a directory and its contents
 import time
 import readline
+import sys
 
 #TODO:
 #readline.set_completer(complete)
@@ -46,8 +47,11 @@ HELP_CMDs= """Available internal commands:
               /ls -- shows folders
               /help /quit /history -- controls the RAG CLI"""
 
-model_name = "llama3" #Other LLMs model can be choosen from https://ollama.com/library, example:
-#model_name="mistral" #Other LLMs model can be choosen from https://ollama.com/library 
+#model_name = "mistral" #Other LLMs model can be choosen from https://ollama.com/library, example:
+#model_name="llama3"" #Other LLMs model can be choosen from https://ollama.com/library 
+model_name = "phi3:14b"
+
+# Please note that saved contexts may be dependent on the used model.
 
 global log_file
 
@@ -71,17 +75,19 @@ def get_document_text(docs:list)->str:
     """
     text = ""
     for doc in docs:
-            #try:
-            if doc[-3:] == "pdf":
-                pdf_reader = PdfReader(doc)
-                for page in pdf_reader.pages:
-                    text += page.extract_text()
-            elif doc[-3:] == "txt":
-                text += doc.read().decode("utf-8")
-            else:
-                print(f"Unsupported file type: {doc}")
-            #except Exception as e:
-            #   print(f"Error processing {doc.name}: {e}")
+            try:
+                if doc[-4:] == ".pdf":
+                    pdf_reader = PdfReader(doc)
+                    for page in pdf_reader.pages:
+                        text += page.extract_text()
+                elif doc[-4:] == ".txt" or doc[-3:] == ".py":
+                    for l in open(doc).readlines():
+                        text += l
+                else:
+                    print(f"Unsupported file type: {doc}")
+            except Exception as e:
+               print(f"Error processing {doc}: {e}")
+               text = ""
     return text
 
 
@@ -109,7 +115,7 @@ def get_text_chunks(text: str) -> list:
     chunks = text_splitter.split_text(text)
    
     if log_file is not None:
-        with open(log_file + 'Textchunks.txt', 'w', encoding='utf-8') as f:
+        with open(log_file + model_name + 'Textchunks.txt', 'w', encoding='utf-8') as f:
             for i, chunk in enumerate(chunks):
                 f.write(f'chunk_{i}: {chunk}\n')
     
@@ -137,7 +143,7 @@ def get_vectorstore(text_chunks : list) -> \
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embed)
     
     if log_file is not None:
-        with open(log_file + 'Embeddings.txt', 'w') as f:
+        with open(log_file + model_name + 'Embeddings.txt', 'w') as f:
             for i in range(vectorstore.index.ntotal):
                 embedding = vectorstore.index.reconstruct(i)
                 emb_str = ','.join(map(str, embedding))
@@ -205,21 +211,28 @@ def prompt_llm(user_question):
         
     response = conversation.invoke(input = user_question) #conversation({'question': user_question})
     chat_history = response['chat_history']
-    print_chat_history()
+    print_chat_history('')
 
 
-def print_chat_history() -> None:
+def print_chat_history(fn : str) -> None:
         """ """
                     
         global chat_history 
         
+        if(fn != ""):
+            f = open(fn, "w")
+        else:
+            f = sys.stdout
+
         print(Style.BRIGHT)
         for i, message in enumerate(chat_history):
             if i % 2 == 0:
-                print(Fore.RED+"USER:", Fore.GREEN+message.content)
+                print(Fore.RED+"USER:", Fore.GREEN+message.content, file=f)
             else:
-                print(Fore.RED+"BOT:", Fore.WHITE+ message.content)
-        print(Style.RESET_ALL)
+                print(Fore.RED+"BOT:", Fore.WHITE+ message.content, file=f)
+        print(Style.RESET_ALL, file=f)
+
+        if(fn!=""): f.close()
             
 # %%
 
@@ -266,7 +279,7 @@ def load_state(filename):
             chat_history = state['chat_history']
         
         # Populate chat_display directly and trigger update
-        print_chat_history()
+        print_chat_history('')
     else:
         print("No saved state found.")
 
@@ -323,8 +336,12 @@ def cmd_read(files : str):
 def cmd_execute(file_cmds: str) -> None:
     """ """
     #   process infile and outfile
-    inf = open_file(file_cmds, 'r')
-
+    try:
+        inf = open_file(file_cmds, 'r')
+    except Exception as e:
+        print(f"Error processing {file_cmds}: {e}")
+        return
+ 
     # The main loop
     cmd = '#'
     while cmd != '/quit':
@@ -429,7 +446,7 @@ def process_one_cmd(user_input: str) -> None:
     elif cmd[0] == "/clean":
         clear_conversation()
     elif cmd[0] == "/history":
-        print_chat_history()
+        print_chat_history(cmd[1])
     elif cmd[0] == "/ls":
         col = 0
         try:
@@ -489,7 +506,8 @@ def force_init_conversation() -> None:
 "a need to upload the documents again. Additionally, the model extracts text "+
 "chunks and generates embeddings for each document, which can be useful for "+
 "further analysis or processing tasks.",
-HELP_CMDs]
+HELP_CMDs,
+"As LLM the system currently uses "+model_name+" from Ollama Library."]
     vectorstore = get_vectorstore(sample_text)
     conversation = get_conversation_chain(vectorstore)
     
@@ -497,11 +515,11 @@ HELP_CMDs]
     
 def init_conversation() -> None:
      
-     if os.path.exists("start_conversation.pkl"):
-         load_state("start_conversation.pkl")
+     if os.path.exists("start_conversation"+model_name+".pkl"):
+         load_state("start_conversation"+model_name+".pkl")
      else:
          force_init_conversation()
-         save_state("start_conversation.pkl")
+         save_state("start_conversation"+model_name+".pkl")
 
 # %%
 # MAIN FUNTION TO PROCESS ALL COMMANDS
