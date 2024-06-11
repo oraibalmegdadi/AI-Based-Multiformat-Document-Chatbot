@@ -22,7 +22,6 @@ import os  # Library for interacting with the operating system
 from shutil import copytree  # Library for recursively copying a directory and its contents
 
 
-
 model_name="mistral" #Other LLMs model can be choosen from https://ollama.com/library 
 def get_document_text(docs:list)->str:
     """
@@ -197,6 +196,16 @@ def clear_conversation():
     st.session_state.chat_display = []
     st.experimental_rerun()
 
+    
+def is_conversation_empty():
+    """
+    Checks if the conversation is empty.
+
+    Returns:
+    bool: True if the conversation is empty, False otherwise.
+    """
+    return st.session_state.conversation is None or not st.session_state.chat_history
+    
 def add_custom_static_path():
     """
     Adds a custom static path for serving images within the Streamlit app.
@@ -221,7 +230,6 @@ def add_custom_static_path():
 
 add_custom_static_path()
 
-
 def main():
     """
     Main function to set up the Streamlit interface and handle user interactions.
@@ -234,7 +242,7 @@ def main():
         st.session_state.conversation = None
 
     if "chat_history" not in st.session_state:
-        st.session_state.chat_history = None
+        st.session_state.chat_history = []
 
     if "chat_display" not in st.session_state:
         st.session_state.chat_display = []
@@ -259,11 +267,14 @@ def main():
                 vectorstore = get_vectorstore(text_chunks)
                 st.session_state.conversation = get_conversation_chain(vectorstore)
 
-        save_filename = st.text_input("Save filename", value="conversation_state1.pkl")
-        if st.button("Save"):
-            save_state(save_filename)
+        save_filename = st.text_input("Save filename", value="conversation_1.pkl")
+        save_button_disabled = is_conversation_empty()
 
-        load_filename = st.text_input("Load filename", value="conversation_state1.pkl")
+        if st.button("Save", disabled=save_button_disabled, key="save_button"):
+            if not save_button_disabled:
+                save_state(save_filename)
+
+        load_filename = st.text_input("Load filename", value="conversation_1.pkl")
         if st.button("Load"):
             load_state(load_filename)
 
