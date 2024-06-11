@@ -42,14 +42,14 @@ This model utilizes the Ollama software tool to run large language models (LLMs)
 
 4. **Run Ollama with the selected LLM**:
 	The default LLM is "mistral". You can choose other LLMs from the supported libraries on the Ollama website: [Ollama Library](https://ollama.com/library).
-    Make sure you update the variable "model_name" inside the OfflineRAGapp-Mistral.py also if you want to change the LLM library
+    Make sure you update the variable "model_name" inside the OfflineRAGapp.py also if you want to change the LLM library
 	```sh
     ollama pull mistral
     ```
 
 5. **Run the application**:
     ```sh
-    streamlit run OfflineChatbot-Mistral.py
+    streamlit run OfflineRAGapp.py
     ```
 
 
