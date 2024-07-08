@@ -1,6 +1,6 @@
 # Usage Examples for OfflineRAGapp-CommandLine.py
 
-## Start a New Session with Documents
+## Start a New Session with a uploading a document
 * To start a new session and process the document `dams1.pdf`, use the following command:
 
     ```sh
