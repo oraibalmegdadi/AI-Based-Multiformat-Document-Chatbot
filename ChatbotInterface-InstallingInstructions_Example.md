@@ -1,4 +1,3 @@
-# to be deleted from the main readme, and add it later
 
 ## Using the Chatbot
 
