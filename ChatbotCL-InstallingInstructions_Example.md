@@ -1,6 +1,15 @@
 # Install requirements 
 
-Step 1: Create a Conda Environment
+
+Step 1:Clone the repository from GitHub:
+```sh
+git clone https://github.com/oraibalmegdadi/AI-Based-Multiformat-Document-Chatbot
+```
+Navigate to your folder: 
+
+cd yourprojectname
+
+Step 2: Create a Conda Environment
 Create a New Conda Environment:
 ```sh
 conda create --name newenv python=3.8

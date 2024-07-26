@@ -2,13 +2,11 @@
 
 ## Using the Chatbot
 
-1. **Install and Run Ollama** from [https://ollama.com/download](https://ollama.com/download).
-
-   **Using Python Terminal:**
+1. **Using Python Terminal:**
 
 2. **Clone the repository**:
     ```sh
-    git clone https://github.com/oraibalmegdadi/AI-Based-Multiformat-Document-Chatbot
+    git clone 
     ```
 
 3. **Download requirements**:
