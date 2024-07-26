@@ -26,7 +26,10 @@ This model utilizes the Ollama software tool to run large language models (LLMs)
 ## Using the Offline Chatbot
 
 **Install and Run Ollama** from [https://ollama.com/download](https://ollama.com/download).
-Our repository provides two versions, one is using the command line as exaplined in [ChatbotCL-InstallingInstructions_Example](https://github.com/oraibalmegdadi/AI-Based-Multiformat-Document-Chatbot/blob/main/ChatbotCL-InstallingInstructions_Example.md) : the second is using graphical user interface as explained in: [ChatbotInterface-InstallingInstructions_Example](https://github.com/oraibalmegdadi/AI-Based-Multiformat-Document-Chatbot/blob/main/ChatbotInterface-InstallingInstructions_Example.md)
+
+Our repository provides two versions:
+- ** First version using the chatbot using the command line prompt as exaplined in [ChatbotCL-InstallingInstructions_Example](https://github.com/oraibalmegdadi/AI-Based-Multiformat-Document-Chatbot/blob/main/ChatbotCL-InstallingInstructions_Example.md)
+- ** second version using the chatbot using graphical user interface as explained in: [ChatbotInterface-InstallingInstructions_Example](https://github.com/oraibalmegdadi/AI-Based-Multiformat-Document-Chatbot/blob/main/ChatbotInterface-InstallingInstructions_Example.md)
 
 ## Useful Tutorials: 
 1. Playlist by @alejandro_ao:  https://www.youtube.com/watch?v=LBNpyjcbv0o&list=PLMVV8yyL2GN_n41v1ESBvDHwMbYYhlAh1
