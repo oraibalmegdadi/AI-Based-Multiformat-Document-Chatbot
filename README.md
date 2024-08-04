@@ -1,11 +1,16 @@
 # Repository Description
 
-This repository contains an implementation of an offline Retrieval-Augmented Generation (RAG) model for a Document Chatbot, providing Conversational AI capabilities for multiformat PDFs and TXTs. The model combines cutting-edge technologies and tools to provide a robust, interactive, and efficient document querying system. Users can upload multiple document formats, including PDFs, and text files, and interact with the documents through a conversational AI interface. Moreover, The application allow to save the conversation and  has the ability to load it later and continue the conversation without a need to upload the documents again. Additionally, the model extracts text chunks and generates embeddings for each document, which can be useful for further analysis or processing tasks.
+This repository features an implementation of an offline Retrieval-Augmented Generation (RAG) model for a Document Chatbot, offering advanced Conversational AI capabilities for various document formats, including PDFs and TXTs. The model integrates state-of-the-art technologies to deliver a robust, interactive, and efficient document querying system.
+
+Users can upload multiple document formats and engage with them through either a Command Line Interface (CLI) or a Graphical User Interface (GUI). Additionally, the application allows users to save conversations and reload them later, enabling continued interaction without needing to re-upload the documents.
+
+The model also extracts text chunks and generates embeddings for each document, facilitating further analysis or processing tasks.
+
 ## Key Technologies and Tools
 
 - **[Ollama](https://ollama.com/)**: Used for large language models and embeddings.
 - **[Langchain](https://www.langchain.com/)**: Provides the framework for building applications with language models.
-- **[Mistral](https://mistral.ai/)**: A state-of-the-art language model used for generating responses.
+- ** large language models (LLMs): Ollama supports multiple LLMs from various companies, each available in different parameter sizes to meet diverse project performance, computational requirements, and application suitability. Each model size is designed to address specific needs, balancing resource usage and performance to offer flexibility depending on the deployment context. Generally, the larger the model, the more powerful it is, but it also requires more computational resources to run efficiently. For a complete list of supported models, visit [Ollama's model library](https://ollama.com/library). You can change the LLM used by modifying the "model_name" parameter in ChatbotFunctions.py.
 - **[FAISS](https://ai.meta.com/tools/faiss/)**: A library for efficient similarity search and clustering of dense vectors.
 - **[Streamlit](https://streamlit.io/)**: An open-source app framework for Machine Learning and Data Science teams to create interactive web applications.
 
@@ -27,9 +32,12 @@ This model utilizes the Ollama software tool to run large language models (LLMs)
 
 **Install and Run Ollama** from [https://ollama.com/download](https://ollama.com/download).
 
-Our repository provides two versions:
-- ** First version using the chatbot using the command line prompt as exaplined in [ChatbotCL-InstallingInstructions_Example](https://github.com/oraibalmegdadi/AI-Based-Multiformat-Document-Chatbot/blob/main/ChatbotCL-InstallingInstructions_Example.md)
-- ** second version using the chatbot using graphical user interface as explained in: [ChatbotInterface-InstallingInstructions_Example](https://github.com/oraibalmegdadi/AI-Based-Multiformat-Document-Chatbot/blob/main/ChatbotInterface-InstallingInstructions_Example.md)
+Our repository offers two versions of the chatbot:
+
+**Command Line Interface (CLI): Follow the instructions provided in the [ChatbotCL-InstallingInstructions_Example](https://github.com/oraibalmegdadi/AI-Based-Multiformat-Document-Chatbot/blob/main/ChatbotCL-InstallingInstructions_Example.md) document to set up and use the chatbot via the command line prompt.
+
+**Graphical User Interface (GUI): Follow the instructions provided in the [ChatbotInterface-InstallingInstructions_Example](https://github.com/oraibalmegdadi/AI-Based-Multiformat-Document-Chatbot/blob/main/ChatbotInterface-InstallingInstructions_Example.md) document to set up and use the chatbot with a graphical user interface.
+
 
 ## Useful Tutorials: 
 1. Playlist by @alejandro_ao:  https://www.youtube.com/watch?v=LBNpyjcbv0o&list=PLMVV8yyL2GN_n41v1ESBvDHwMbYYhlAh1
