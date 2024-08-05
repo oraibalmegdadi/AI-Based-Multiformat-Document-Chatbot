@@ -1,5 +1,3 @@
-# htmlTemplates.py
-
 css = '''
 <style>
 .chat-message {
@@ -25,11 +23,16 @@ css = '''
   color: #fff;
 }
 .button-disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-    }
-
-
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.stForm {
+    position: relative;
+}
+.stForm .stButton {
+    position: absolute;
+    right: 0;
+}
 </style>
 '''
 

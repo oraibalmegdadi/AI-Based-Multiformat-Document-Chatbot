@@ -1,0 +1,32 @@
+(base) PS C:\Users\Oraib> cd mistralLanChain/OfflineRAG/OfflineRAG-Package/CommandLineInterface
+(base) PS C:\Users\Oraib\mistralLanChain\OfflineRAG\OfflineRAG-Package\CommandLineInterface> conda activate newenv
+(newenv) PS C:\Users\Oraib\mistralLanChain\OfflineRAG\OfflineRAG-Package\CommandLineInterface> python ChatbotCL.py --docs dams1.pdf dams2.pdf dams3.pdf dams4.ddf
+Service is available. Processing documents...
+Cannot process dams3.pdf: File not found.
+Unsupported file type: dams4.ddf
+New session created. Current session contains analysis of the following documents:
+- dams1.pdf
+- dams2.pdf
+Please start asking questions to get answers based on these documents.
+(newenv) PS C:\Users\Oraib\mistralLanChain\OfflineRAG\OfflineRAG-Package\CommandLineInterface> python ChatbotCL.py --question "what are dams?"
+User: what are dams?
+Bot: Dams are structures built across rivers or streams, typically designed for irrigation purposes. Dams can be found in various regions of the world, depending on their location and purpose.
+(newenv) PS C:\Users\Oraib\mistralLanChain\OfflineRAG\OfflineRAG-Package\CommandLineInterface> python ChatbotCL.py --question "what are dams types?"
+User: what are dams types?
+Bot: There are several different dam types that are used to control water levels. Some of these dam types include:
+
+1. Dams with a built-in overflow system, which allows the excess water to flow back up into the river.
+2. Dams with a traditional water treatment device, which can be adjusted to different water requirements.
+3. Dams with a custom-designed irrigation system, which can be adjusted to different water requirements and irrigation conditions.
+
+These dam types are designed to control water levels in different ways, depending on the specific characteristics of the water supply.
+(newenv) PS C:\Users\Oraib\mistralLanChain\OfflineRAG\OfflineRAG-Package\CommandLineInterface> python ChatbotCL.py --save sessionTest1.pkl
+Session saved successfully.
+(newenv) PS C:\Users\Oraib\mistralLanChain\OfflineRAG\OfflineRAG-Package\CommandLineInterface>
+(newenv) PS C:\Users\Oraib\mistralLanChain\OfflineRAG\OfflineRAG-Package\CommandLineInterface> python ChatbotCL.py --load sessionTest1.pkl
+Pickle file 'sessionTest1.pkl' loaded successfully and contains analysis of the following documents:
+- dams1.pdf
+- dams2.pdf                                                                                    python ChatbotCL.py --question "what is the dam definition? "aib\mistralLanChain\OfflineRAG\OfflineRAG-Package\CommandLineInterface>
+User: what is the dam definition?
+Bot: The dam definition refers to the physical structure and features used to control water levels in different ways, depending on the specific characteristics of the water supply. These features include channels, sluvers, and dams that are built over a wide range of terrain, including hills, valleys, and deserts. The dam definition is the physical structure and features used to control water levels in different ways, depending on the specific characteristics of the water supply.
+(newenv) PS C:\Users\Oraib\mistralLanChain\OfflineRAG\OfflineRAG-Package\CommandLineInterface>
