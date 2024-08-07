@@ -41,7 +41,7 @@ Install remaining packages via pip:
 
 
 ```sh
-pip install -r ChatbotCL-Requirements.txt
+pip install -r requirements.txt
 
 ```
 
