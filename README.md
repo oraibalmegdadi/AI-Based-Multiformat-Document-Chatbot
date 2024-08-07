@@ -34,7 +34,7 @@ This model utilizes the Ollama software tool to run large language models (LLMs)
 
 Our repository offers two versions of the chatbot:
 
-**Command Line Interface (CLI): Follow the instructions provided in the [ChatbotCL-InstallingInstructions_Example](https://github.com/oraibalmegdadi/AI-Based-Multiformat-Document-Chatbot/blob/main/ChatbotCL-InstallingInstructions_Example.md) document to set up and use the chatbot via the command line prompt.
+**Command Line Interface (CLI): Follow the instructions provided in the [ChatbotCL-InstallingInstructions_Example](https://github.com/oraibalmegdadi/AI-Based-Multiformat-Document-Chatbot/tree/main/CommandLineInterface) document to set up and use the chatbot via the command line prompt.
 
 **Graphical User Interface (GUI): Follow the instructions provided in the [ChatbotInterface-InstallingInstructions_Example](https://github.com/oraibalmegdadi/AI-Based-Multiformat-Document-Chatbot/blob/main/ChatbotInterface-InstallingInstructions_Example.md) document to set up and use the chatbot with a graphical user interface.
 
