@@ -3,6 +3,7 @@ from htmlTemplates import css, bot_template, user_template  # HTML template libr
 import os  # Library for interacting with the operating system
 from shutil import copytree  # Library for recursively copying a directory and its contents
 import sys  # Library for system-specific parameters and functions
+from langchain.vectorstores import FAISS  # FAISS library for vector storage and similarity search
 
 # Add the path to the parent directory to access ChatbotFunctions.py
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -14,7 +15,7 @@ from ChatbotFunctions import (
     get_conversation_chain,
     save_state,
     load_state,
-    #clear_conversation,
+   # clear_conversation,
     check_service_availability
 )
 
@@ -80,7 +81,7 @@ def main():
     if "chat_display" not in st.session_state:
         st.session_state.chat_display = []
 
-    st.header("Chat with Multiple PDFs and TXTs Locally (Mistral) :books:")
+    st.header("Chat with Multiple PDFs and TXTs Locally :books:")
 
     user_question = st.text_input("Ask a question about your documents:")
     if user_question:
@@ -95,20 +96,28 @@ def main():
         docs = st.file_uploader("Upload your PDFs and TXTs here and click on 'Process'", accept_multiple_files=True, type=['pdf', 'txt'])
         if st.button("Process"):
             with st.spinner("Processing"):
-                raw_text = get_document_text(docs)
-                if raw_text is None:
-                    st.error("No valid text extracted from the documents.")
-                else:
+                # Convert uploaded files to a list of their paths
+                doc_paths = []
+                for doc in docs:
+                    doc_path = f"temp_{doc.name}"
+                    with open(doc_path, "wb") as f:
+                        f.write(doc.getbuffer())
+                    doc_paths.append(doc_path)
+                    
+                raw_text, processed_docs = get_document_text(doc_paths)
+                if isinstance(raw_text, str) and raw_text.strip():
                     text_chunks = get_text_chunks(raw_text)
                     vectorstore = get_vectorstore(text_chunks)
                     st.session_state.conversation = get_conversation_chain(vectorstore)
+                else:
+                    st.error("No valid text extracted from the documents.")
 
         save_filename = st.text_input("Save filename", value="conversation_1.pkl")
         save_button_disabled = st.session_state.conversation is None or not st.session_state.chat_history
 
         if st.button("Save", disabled=save_button_disabled, key="save_button"):
             if not save_button_disabled:
-                save_state(st.session_state.conversation, st.session_state.chat_history, raw_text, [], save_filename)
+                save_state(st.session_state.conversation, st.session_state.chat_history, "", [], save_filename)
                 st.success("State saved successfully.")
 
         load_filename = st.text_input("Load filename", value="conversation_1.pkl")
@@ -131,9 +140,9 @@ def main():
             else:
                 st.error("No saved state found.")
 
-       # if st.button("Clear"):
-        #    clear_conversation()
-         #   st.experimental_rerun()
+#        if st.button("Clear"):
+ #           clear_conversation()
+  #          st.experimental_rerun()
 
 if __name__ == '__main__':
     main()

@@ -14,10 +14,10 @@
     ```
 
 4. **Run Ollama with the selected LLM**:
-	The default LLM is "mistral". You can choose other LLMs from the supported libraries on the Ollama website: [Ollama Library](https://ollama.com/library).
-    Make sure you update the variable "model_name" inside the OfflineRAGapp.py also if you want to change the LLM library
+	We choose to use "phi3" mini model from Microsoft as the defualt LLM. You can choose other LLMs from the supported libraries on the Ollama website: [Ollama Library](https://ollama.com/library).
+    Make sure you update the variable "model_name" inside the ChatbotFunctions.py also if you want to change the LLM library
 	```sh
-    ollama pull mistral
+    ollama pull phi3:mini
     ```
 
 5. **Run the application**:
