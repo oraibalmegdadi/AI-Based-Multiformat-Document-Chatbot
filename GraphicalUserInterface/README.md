@@ -22,7 +22,7 @@
 
 5. **Run the application**:
     ```sh
-    streamlit run OfflineRAGapp.py
+    streamlit run ChatbotGUI.py
     ```
 
 
